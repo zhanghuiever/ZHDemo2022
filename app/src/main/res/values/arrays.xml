@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="demo_list">
+        <item>Activity启动模式</item>
+        <item>Service</item>
+        <item>Fragment</item>
+        <item>Broadcast</item>
+    </string-array>
+</resources>
