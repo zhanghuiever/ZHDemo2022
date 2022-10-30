@@ -2,6 +2,7 @@
 <resources>
     <string-array name="demo_list">
         <item>Activity启动模式</item>
+        <item>Activity跳转</item>
         <item>Service</item>
         <item>Fragment</item>
         <item>Broadcast</item>

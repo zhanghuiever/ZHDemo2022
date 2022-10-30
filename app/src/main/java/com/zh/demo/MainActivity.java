@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.zh.demo.activity_jump.JumpMainActivity;
 import com.zh.demo.activity_launchmode.LaunchModeMainActivity;
 
 import java.util.ArrayList;
@@ -43,14 +44,19 @@ public class MainActivity extends AppCompatActivity implements DemoListAdapter.O
 
     @Override
     public void onItemClick(int position) {
+        Intent intent=null;
         switch (position){
             case 0:
-                Intent intent = new Intent(this, LaunchModeMainActivity.class);
-                startActivity(intent);
+                intent = new Intent(this, LaunchModeMainActivity.class);
                 break;
             case 1:
+                intent = new Intent(this, JumpMainActivity.class);
                 break;
             default:
         }
+        if(intent != null){
+            startActivity(intent);
+        }
+
     }
 }

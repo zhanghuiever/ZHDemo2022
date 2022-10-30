@@ -9,8 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyDemo">
-        <activity android:name=".activity_launchmode.FourthActivity"
-            android:taskAffinity=":new"></activity>
+        <activity android:name=".activity_jump.MySchemeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data
+                    android:scheme="zh"
+                    android:host="com.zh.demo"
+                    android:port="8888"
+                    android:path="/testScheme"
+                    />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity_jump.JumpMainActivity" />
+        <activity
+            android:name=".activity_launchmode.FourthActivity"
+            android:taskAffinity=":new" />
         <activity
             android:name=".activity_launchmode.ThirdActivity"
             android:taskAffinity=":new" />
