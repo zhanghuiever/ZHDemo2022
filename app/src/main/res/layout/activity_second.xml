@@ -4,31 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_launchmode.LaunchModeMainActivity">
+    tools:context=".activity_launchmode.SecondActivity">
+
 
     <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:orientation="vertical">
         <Button
-            android:id="@+id/enter_second"
+            android:id="@+id/second_enter_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enter SecondActivity"/>
+            android:text="Enter LaunchModeMainActivity"/>
         <Button
-            android:id="@+id/enter_third"
+            android:id="@+id/second_enter_self"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enter ThirdActivity"/>
-        <Button
-            android:id="@+id/enter_fourth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Enter FourthActivity"/>
+            android:text="Enter Self"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="LaunchModeMainActivity"/>
+            android:text="SecondActivity"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
