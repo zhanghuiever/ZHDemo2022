@@ -4,29 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_jump.JumpMainActivity">
+    tools:context=".activity_jump.JumpAnimationActivityB">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
         <Button
-            android:id="@+id/jump_enter_scheme"
+            android:id="@+id/jump_anim_enter_b"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            android:text="Enter MySchemeActivity"/>
-        <Button
-            android:id="@+id/jump_enter_activity_anim"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Enter JumpAnimationActivity"/>
+            android:text="Enter JumpAnimationActivity_B"
+            android:visibility="gone"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:textSize="30sp"
-            android:text="JumpMainActivity"/>
+            android:text="JumpAnimationActivityB"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

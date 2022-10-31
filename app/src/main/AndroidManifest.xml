@@ -9,18 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyDemo">
+        <activity android:name=".activity_jump.JumpAnimationActivityB"></activity>
+        <activity android:name=".activity_jump.JumpAnimationActivity" />
         <activity android:name=".activity_jump.MySchemeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
 
                 <data
-                    android:scheme="zh"
                     android:host="com.zh.demo"
-                    android:port="8888"
                     android:path="/testScheme"
-                    />
+                    android:port="8888"
+                    android:scheme="zh" />
             </intent-filter>
         </activity>
         <activity android:name=".activity_jump.JumpMainActivity" />
