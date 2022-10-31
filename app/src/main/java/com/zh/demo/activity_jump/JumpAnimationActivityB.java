@@ -17,6 +17,6 @@ public class JumpAnimationActivityB extends AppCompatActivity {
     @Override
     public void finish() {
         super.finish();
-//        overridePendingTransition(R.anim.anim_no,R.anim.anim_bottom_out);
+        overridePendingTransition(R.anim.anim_no,R.anim.anim_bottom_out);
     }
 }

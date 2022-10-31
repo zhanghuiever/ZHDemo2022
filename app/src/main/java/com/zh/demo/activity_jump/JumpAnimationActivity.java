@@ -29,7 +29,7 @@ public class JumpAnimationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, JumpAnimationActivityB.class);
                 mContext.startActivity(intent);
-//                overridePendingTransition(R.anim.anim_bottom_in, R.anim.anim_no);
+                overridePendingTransition(R.anim.anim_bottom_in, R.anim.anim_no);
             }
         });
     }
