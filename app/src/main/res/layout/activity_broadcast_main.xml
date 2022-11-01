@@ -17,12 +17,11 @@
             android:textAllCaps="false"
             android:text="Send permission broadcast"/>
         <Button
-            android:id="@+id/jump_enter_activity_anim"
+            android:id="@+id/broadcast_send_use_permission"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            android:visibility="gone"
-            android:text="Enter JumpAnimationActivity"/>
+            android:text="Ask for sending broadcast"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
