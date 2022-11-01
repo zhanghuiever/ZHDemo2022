@@ -1,15 +1,14 @@
 package com.zh.demo;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.zh.demo.activity_jump.JumpMainActivity;
 import com.zh.demo.activity_launchmode.LaunchModeMainActivity;
+import com.zh.demo.service.ServiceMainActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements DemoListAdapter.O
                 break;
             case 1:
                 intent = new Intent(this, JumpMainActivity.class);
+                break;
+            case 2:
+                intent = new Intent(this, ServiceMainActivity.class);
                 break;
             default:
         }

@@ -1,8 +1,8 @@
 package com.zh.demo.activity_jump;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.zh.demo.R;
 

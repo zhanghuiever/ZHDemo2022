@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyDemo">
-        <activity android:name=".activity_jump.JumpAnimationActivityB"></activity>
+        <activity android:name=".service.ServiceMainActivity" />
+
+        <activity android:name=".activity_jump.JumpAnimationActivityB" />
         <activity android:name=".activity_jump.JumpAnimationActivity" />
         <activity android:name=".activity_jump.MySchemeActivity">
             <intent-filter>
@@ -43,6 +45,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".service.MyIntentService"
+            android:exported="false"></service>
     </application>
 
 </manifest>
