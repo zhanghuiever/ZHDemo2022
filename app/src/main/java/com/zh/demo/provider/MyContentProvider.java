@@ -7,7 +7,6 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.widget.Toast;
 
 public class MyContentProvider extends ContentProvider {
 
@@ -97,8 +96,9 @@ public class MyContentProvider extends ContentProvider {
 
         String tableName = getTableName(uri);
         int result = mSQLiteDatabase.delete(tableName, selection, selectionArgs);
-        Toast.makeText(mContext, "delete result: " + result, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(mContext, "delete result: " + result, Toast.LENGTH_SHORT).show();
 
+        // 当该URI的ContentProvider数据发生变化时，通知外界（即访问该ContentProvider数据的访问者）
         mContext.getContentResolver().notifyChange(uri, null);
         return result;
     }
@@ -125,7 +125,7 @@ public class MyContentProvider extends ContentProvider {
         // 向该表添加数据
         String tableName = getTableName(uri);
         long result = mSQLiteDatabase.insert(tableName, null, values);
-        Toast.makeText(mContext, "insert result: " + result, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(mContext, "insert result: " + result, Toast.LENGTH_SHORT).show();
 
         // 当该URI的ContentProvider数据发生变化时，通知外界（即访问该ContentProvider数据的访问者）
         mContext.getContentResolver().notifyChange(uri, null);
@@ -149,8 +149,10 @@ public class MyContentProvider extends ContentProvider {
 
         String tableName = getTableName(uri);
         int result = mSQLiteDatabase.update(tableName, values, selection, selectionArgs);
-        Toast.makeText(mContext, "update result: " + result, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(mContext, "update result: " + result, Toast.LENGTH_SHORT).show();
 
+        // 当该URI的ContentProvider数据发生变化时，通知外界（即访问该ContentProvider数据的访问者）
+        mContext.getContentResolver().notifyChange(uri, null);
         return result;
     }
 

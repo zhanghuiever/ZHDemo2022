@@ -12,6 +12,7 @@ import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,13 +30,15 @@ public class ContentProviderMainActivity extends AppCompatActivity {
     private Button mSelectFromProviderBtn;
     public static TextView mDisplayTableInfoTv = null;
 
-    private static final int PROVIDER_HANDLER_MESSAGE_DISPLAY = 0;
-    private static final int PROVIDER_HANDLER_MESSAGE_INSERT = 1;
-    private static final int PROVIDER_HANDLER_MESSAGE_DELETE = 2;
-    private static final int PROVIDER_HANDLER_MESSAGE_UPDATE = 3;
-    private static final int PROVIDER_HANDLER_MESSAGE_QUERY = 4;
+    public static final int PROVIDER_HANDLER_MESSAGE_DISPLAY = 0;
+    public static final int PROVIDER_HANDLER_MESSAGE_INSERT = 1;
+    public static final int PROVIDER_HANDLER_MESSAGE_DELETE = 2;
+    public static final int PROVIDER_HANDLER_MESSAGE_UPDATE = 3;
+    public static final int PROVIDER_HANDLER_MESSAGE_QUERY = 4;
+    public static final int PROVIDER_HANDLER_MESSAGE_OBSERVER = 5;
     private MyProviderHandler myProviderHandler;
 
+    private MyContentObserver myContentObserver;
     private static class MyProviderHandler extends Handler {
 
         private WeakReference<Activity> reference;
@@ -52,6 +55,10 @@ public class ContentProviderMainActivity extends AppCompatActivity {
             ContentValues values = new ContentValues();
             Cursor cursor = null;
             switch (msg.what) {
+                case PROVIDER_HANDLER_MESSAGE_OBSERVER:
+                    String data_change_tx = (String) msg.obj;
+                    Toast.makeText(reference.get(), data_change_tx, Toast.LENGTH_SHORT).show();
+                    break;
                 case PROVIDER_HANDLER_MESSAGE_DISPLAY:
                     if(msg.obj == null){
                         //展示全部info
@@ -178,11 +185,15 @@ public class ContentProviderMainActivity extends AppCompatActivity {
             }
         });
 
+        myContentObserver = new MyContentObserver(this, myProviderHandler);
+        getContentResolver().registerContentObserver(Uri.parse("content://com.zh.demo.provider/employee"),
+                false, myContentObserver);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        getContentResolver().unregisterContentObserver(myContentObserver);
         myProviderHandler.removeCallbacksAndMessages(null);
         mDisplayTableInfoTv = null;
     }
