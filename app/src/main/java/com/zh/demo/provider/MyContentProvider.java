@@ -23,14 +23,17 @@ public class MyContentProvider extends ContentProvider {
     public final static int MANAGER_MULTI_CODE = 4;
 
     private final static UriMatcher mMatch;
-    static{
+
+    static {
         mMatch = new UriMatcher(UriMatcher.NO_MATCH);
-        mMatch.addURI(AUTHORITY, MySQLiteOpenHelper.DATABASE_TABLE_EMPLOYEE, EMPLOYEE_CODE);
-        mMatch.addURI(AUTHORITY, MySQLiteOpenHelper.DATABASE_TABLE_MANAGER, MANAGER_CODE);
-        //
-        mMatch.addURI(AUTHORITY, MySQLiteOpenHelper.DATABASE_TABLE_EMPLOYEE+"/#", EMPLOYEE_MULTI_CODE);
-        mMatch.addURI(AUTHORITY, MySQLiteOpenHelper.DATABASE_TABLE_MANAGER+"/#", MANAGER_MULTI_CODE);
+        // 用于CRUD
+        mMatch.addURI(AUTHORITY, MySQLiteOpenHelper.DATABASE_TABLE_EMPLOYEE + "/#", EMPLOYEE_CODE);
+        mMatch.addURI(AUTHORITY, MySQLiteOpenHelper.DATABASE_TABLE_MANAGER + "/#", MANAGER_CODE);
+        // 用于getType()
+        mMatch.addURI(AUTHORITY, MySQLiteOpenHelper.DATABASE_TABLE_EMPLOYEE, EMPLOYEE_MULTI_CODE);
+        mMatch.addURI(AUTHORITY, MySQLiteOpenHelper.DATABASE_TABLE_MANAGER, MANAGER_MULTI_CODE);
     }
+
     public MyContentProvider() {
     }
 
@@ -43,7 +46,7 @@ public class MyContentProvider extends ContentProvider {
 
         //插入一些数据，用于测试
         //在employee中添加数据，添加数据前清空表
-        mSQLiteDatabase.execSQL("delete from " +MySQLiteOpenHelper.DATABASE_TABLE_EMPLOYEE);
+        mSQLiteDatabase.execSQL("delete from " + MySQLiteOpenHelper.DATABASE_TABLE_EMPLOYEE);
         mSQLiteDatabase.execSQL("insert into " + MySQLiteOpenHelper.DATABASE_TABLE_EMPLOYEE +
                 "(id, name, age, address, salary) " +
                 " values(1, 'Lydia', 18, 'China', 5000.0)");
@@ -96,16 +99,17 @@ public class MyContentProvider extends ContentProvider {
         int result = mSQLiteDatabase.delete(tableName, selection, selectionArgs);
         Toast.makeText(mContext, "delete result: " + result, Toast.LENGTH_SHORT).show();
 
+        mContext.getContentResolver().notifyChange(uri, null);
         return result;
     }
 
     @Override
     public String getType(Uri uri) {
-        switch (mMatch.match(uri)){
+        switch (mMatch.match(uri)) {
             case EMPLOYEE_CODE:
                 return "vnd.android.cursor.item/vnd.zh.employee";
             case EMPLOYEE_MULTI_CODE:
-                return"vnd.android.cursor.dir/vnd.zh.employee";
+                return "vnd.android.cursor.dir/vnd.zh.employee";
             case MANAGER_CODE:
                 return "vnd.android.cursor.item/vnd.zh.manager";
             case MANAGER_MULTI_CODE:
@@ -132,6 +136,7 @@ public class MyContentProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
+        // 这里不区分uri是item还是dir, 用户想得到什么的data，可以通过query的参数，自己去设定
         String tableName = getTableName(uri);
         return mSQLiteDatabase.query(tableName, projection,
                 selection, selectionArgs,
@@ -143,19 +148,23 @@ public class MyContentProvider extends ContentProvider {
                       String[] selectionArgs) {
 
         String tableName = getTableName(uri);
-        int result = mSQLiteDatabase.update(tableName, values,selection, selectionArgs);
+        int result = mSQLiteDatabase.update(tableName, values, selection, selectionArgs);
         Toast.makeText(mContext, "update result: " + result, Toast.LENGTH_SHORT).show();
 
         return result;
     }
 
-    private String getTableName(Uri uri){
+    private String getTableName(Uri uri) {
         String tableName = null;
-        switch (mMatch.match(uri)){
+        switch (mMatch.match(uri)) {
+            // content://com.zh.demo.provider/employee和content://com.zh.demo.provider/employee/#
+            // 都能正常的访问的该ContentProvider
             case EMPLOYEE_CODE:
+            case EMPLOYEE_MULTI_CODE:
                 tableName = MySQLiteOpenHelper.DATABASE_TABLE_EMPLOYEE;
                 break;
             case MANAGER_CODE:
+            case MANAGER_MULTI_CODE:
                 tableName = MySQLiteOpenHelper.DATABASE_TABLE_MANAGER;
                 break;
             default:
