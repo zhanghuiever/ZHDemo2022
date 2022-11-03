@@ -5,6 +5,6 @@
         <item>Activity跳转</item>
         <item>Service</item>
         <item>Broadcast</item>
-        <item>Fragment</item>
+        <item>ContentProvider</item>
     </string-array>
 </resources>

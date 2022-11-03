@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zh.demo">
-
-    <!--  谁有权接受我的广播  -->
-    <!--  发送方声明的权限  -->
-    <permission android:name="com.zh.demo.receive_broadcast"
-        android:protectionLevel="normal"/>
-    <!--  接受方申请的权限  -->
-    <uses-permission android:name="com.zh.demo.receive_broadcast"/>
-
-    <!--  谁有权给我发送广播  -->
-    <!--  接受方声明的权限  -->
-    <permission android:name="com.zh.demo.send_broadcast"/>
-    <!--  发送方申请的权限  -->
-    <uses-permission android:name="com.zh.demo.send_broadcast"/>
+    <!-- 接受方申请的权限 -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyDemo">
-        <activity android:name=".broadcast.BroadcastMainActivity"></activity>
+        <activity android:name=".provider.ContentProviderMainActivity"></activity>
+        <activity android:name=".broadcast.BroadcastMainActivity" />
         <activity android:name=".service.ServiceMainActivity" />
         <activity android:name=".activity_jump.JumpAnimationActivityB" />
         <activity android:name=".activity_jump.JumpAnimationActivity" />
@@ -58,9 +47,23 @@
             </intent-filter>
         </activity>
 
+        <provider
+            android:name=".provider.MyContentProvider"
+            android:authorities="com.zh.demo.provider"
+            android:enabled="true"
+            android:exported="true" />
+
         <service
             android:name=".service.MyIntentService"
             android:exported="false" />
-    </application>
+    </application> <!-- 谁有权给我发送广播 -->
+    <!-- 接受方声明的权限 -->
+    <permission
+        android:name="com.zh.demo.receive_broadcast"
+        android:protectionLevel="normal" /> <!-- 发送方申请的权限 -->
+    <permission android:name="com.zh.demo.send_broadcast" />
+    <uses-permission android:name="com.zh.demo.receive_broadcast" />
+
+    <uses-permission android:name="com.zh.demo.send_broadcast" />
 
 </manifest>
