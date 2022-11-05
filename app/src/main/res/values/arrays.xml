@@ -6,5 +6,6 @@
         <item>Service</item>
         <item>Broadcast</item>
         <item>ContentProvider</item>
+        <item>Fragment</item>
     </string-array>
 </resources>

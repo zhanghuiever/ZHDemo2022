@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zh.demo">
-    <!-- 接受方申请的权限 -->
+    <!-- 谁有权给我发送广播 -->
+    <!-- 接受方声明的权限 -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyDemo">
-        <activity android:name=".provider.ContentProviderMainActivity"></activity>
+        <activity android:name=".fragment.FragmentMainActivity"></activity>
+        <activity android:name=".provider.ContentProviderMainActivity" />
         <activity android:name=".broadcast.BroadcastMainActivity" />
         <activity android:name=".service.ServiceMainActivity" />
         <activity android:name=".activity_jump.JumpAnimationActivityB" />
@@ -56,14 +58,14 @@
         <service
             android:name=".service.MyIntentService"
             android:exported="false" />
-    </application> <!-- 谁有权给我发送广播 -->
-    <!-- 接受方声明的权限 -->
+    </application> <!-- 发送方申请的权限 -->
+    <permission android:name="com.zh.demo.send_broadcast" />
+
     <permission
         android:name="com.zh.demo.receive_broadcast"
-        android:protectionLevel="normal" /> <!-- 发送方申请的权限 -->
-    <permission android:name="com.zh.demo.send_broadcast" />
-    <uses-permission android:name="com.zh.demo.receive_broadcast" />
-
+        android:protectionLevel="normal" />
     <uses-permission android:name="com.zh.demo.send_broadcast" />
+
+    <uses-permission android:name="com.zh.demo.receive_broadcast" />
 
 </manifest>

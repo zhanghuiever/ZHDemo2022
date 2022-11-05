@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.zh.demo.activity_jump.JumpMainActivity;
 import com.zh.demo.activity_launchmode.LaunchModeMainActivity;
 import com.zh.demo.broadcast.BroadcastMainActivity;
+import com.zh.demo.fragment.FragmentMainActivity;
 import com.zh.demo.provider.ContentProviderMainActivity;
 import com.zh.demo.service.ServiceMainActivity;
 
@@ -61,6 +62,9 @@ public class MainActivity extends AppCompatActivity implements DemoListAdapter.O
                 break;
             case 4:
                 intent = new Intent(this, ContentProviderMainActivity.class);
+                break;
+            case 5:
+                intent = new Intent(this, FragmentMainActivity.class);
                 break;
             default:
         }
