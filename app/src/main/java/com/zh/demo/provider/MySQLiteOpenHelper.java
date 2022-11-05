@@ -32,7 +32,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //公司雇员info
         db.execSQL("CREATE TABLE IF NOT EXISTS " + DATABASE_TABLE_EMPLOYEE + "("
-                + DATABASE_COLUMN_ID +  " INTEGER PRIMARY KEY, AUTOINCREMENT"
+                + DATABASE_COLUMN_ID +  " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + DATABASE_COLUMN_NAME +  " TEXT NOT NULL,"
                 + DATABASE_COLUMN_AGE + " INT CHECK(" + DATABASE_COLUMN_AGE + ">=0),"
                 + DATABASE_COLUMN_ADDRESS + " VARCHAR(50) DEFAULT 'CHINA',"
@@ -40,7 +40,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
         //公司管理者info，比employee多了一个level列
         db.execSQL("CREATE TABLE IF NOT EXISTS " + DATABASE_TABLE_MANAGER + "("
-                + DATABASE_COLUMN_ID +  " INTEGER PRIMARY KEY, AUTOINCREMENT"
+                + DATABASE_COLUMN_ID +  " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + DATABASE_COLUMN_NAME +  " TEXT NOT NULL,"
                 + DATABASE_COLUMN_AGE + " INT CHECK(" + DATABASE_COLUMN_AGE + ">=0),"
                 + DATABASE_COLUMN_MANAGER_LEVEL + " INT CHECK(" + DATABASE_COLUMN_MANAGER_LEVEL + ">0),"
